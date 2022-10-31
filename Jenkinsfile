@@ -27,9 +27,9 @@ pipeline {
                     echo "building docker image"
 		    withCredentials([usernamePassword(credentialsId: 'docker-repo', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
 			  
-		    sh 'docker build -t usama07/demo-app:${BUILD_NUMBER} .'
+		    sh 'docker build -t usama07/demo-app:${params.CHOICE} .'
 		    sh "docker login -u $USER -p $PASS"
-		    sh 'docker push usama07/demo-app:${BUILD_NUMBER}'
+		    sh 'docker push usama07/demo-app:${params.CHOICE}'
 		                     
             }
         }
